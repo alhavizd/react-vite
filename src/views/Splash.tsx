@@ -1,6 +1,6 @@
 import {useNavigate} from 'react-router'
 import logo from '@/assets/react.svg'
-function Splash() {
+const Splash: React.FC = () => {
   let navigate = useNavigate()
   const testFunction = async () => {
     navigate('/menu')
