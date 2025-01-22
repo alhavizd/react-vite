@@ -1,6 +1,6 @@
 import axios from 'axios'
-import {getLocale} from '@/utils/locale.tsx'
-import {getDomain, setDomain} from '@/utils/domain.tsx'
+import i18n from 'i18next'
+import {getDomain, setDomain} from '@/utils/domain'
 
 export async function checkStore(): Promise<void> {
   if (!getDomain()) {
@@ -19,7 +19,7 @@ export async function checkStore(): Promise<void> {
     if (!host.includes('antarinmakan.com') && !host.includes('indociti.com')) {
       try {
         const hostname: string = window.location.hostname
-        const selectedLocale: string = getLocale() || import.meta.env.VITE_I18N_LOCALE
+        const selectedLocale: string = i18n.language || import.meta.env.VITE_I18N_LOCALE
         const {data} = await axios.post(`${import.meta.env.VITE_API_URL}${selectedLocale}/hintstore`, {domain: hostname})
         url_store = data.data.url_id
         return setDomain(url_store)

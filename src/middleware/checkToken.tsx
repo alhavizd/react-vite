@@ -1,6 +1,6 @@
-import {login} from '@/services/auth.tsx'
+import {login} from '@/services/auth'
 import {addSeconds} from 'date-fns'
-import {setToken} from '@/utils/token.tsx'
+import {setToken} from '@/utils/token'
 
 export async function checkToken(): Promise<void> {
   const auth_data: string | null = localStorage.getItem(import.meta.env.VITE_COOKIE_KEY + '_auth_data')

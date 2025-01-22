@@ -1,8 +1,8 @@
-import {getLocale} from '@/utils/locale.tsx'
-import {getDomain} from '@/utils/domain.tsx'
+import i18n from 'i18next'
+import {getDomain} from '@/utils/domain'
 
 export function getBaseUrl(): string {
-  let selectedlocale: string = getLocale() || import.meta.env.VITE_I18N_LOCALE
+  let selectedlocale: string = i18n.language || import.meta.env.VITE_I18N_LOCALE
   const url_domain: string = getDomain() ?? 'jakartatest'
   const baseURL: string = '/' + selectedlocale + '/' + url_domain
   return baseURL
