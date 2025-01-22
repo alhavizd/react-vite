@@ -1,5 +1,11 @@
+import {useNavigate} from 'react-router'
 import logo from '@/assets/react.svg'
 function Splash() {
+  let navigate = useNavigate()
+  const testFunction = async () => {
+    navigate('/menu')
+  }
+
   return (
     <>
       <main className="_content">
@@ -13,7 +19,7 @@ function Splash() {
                       <div className="d-flex align-center toolbar-antarinmakan">
                         <img src={logo} alt="Logo" />
                         <div className="spacer" />
-                        <div>locale</div>
+                        <button onClick={testFunction}>Logout</button>
                       </div>
                     </div>
                   </div>

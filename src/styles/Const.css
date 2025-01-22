@@ -516,7 +516,8 @@
   -ms-flex-align: center !important;
   align-items: center !important;
 }
-.grow, .spacer {
+.grow,
+.spacer {
   -webkit-box-flex: 1 !important;
   -ms-flex-positive: 1 !important;
   flex-grow: 1 !important;
