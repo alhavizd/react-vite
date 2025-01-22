@@ -1,9 +1,15 @@
 import {useNavigate} from 'react-router'
+import {useTranslation} from 'react-i18next'
 import logo from '@/assets/react.svg'
 const Splash: React.FC = () => {
   let navigate = useNavigate()
   const testFunction = async () => {
     navigate('/menu')
+  }
+  const {t, i18n} = useTranslation()
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng)
   }
 
   return (
@@ -21,6 +27,9 @@ const Splash: React.FC = () => {
                         <div className="spacer" />
                         <button onClick={testFunction}>Logout</button>
                       </div>
+                      <h1>{t('welcome')}</h1>
+                      <button onClick={() => changeLanguage('en')}>English</button>
+                      <button onClick={() => changeLanguage('id')}>Bahasa Indonesia</button>
                     </div>
                   </div>
                 </div>
