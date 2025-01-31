@@ -27,7 +27,12 @@ export const GlobalProvider = ({children}: {children: React.ReactNode}) => {
   const [isDarkMode, setIsDarkMode] = useState(false)
 
   const toggleTheme = () => {
-    setIsDarkMode((prev) => !prev)
+    setIsDarkMode((prev) => {
+      const newMode = !prev
+      localStorage.setItem(import.meta.env.VITE_COOKIE_KEY + '_theme', newMode ? 'dark' : 'light')
+      document.documentElement.setAttribute('data-theme', newMode ? 'dark' : 'light')
+      return newMode
+    })
   }
 
   const colors = isDarkMode
@@ -58,6 +63,14 @@ export const GlobalProvider = ({children}: {children: React.ReactNode}) => {
 
   // Fetch data saat pertama kali aplikasi dimuat
   useEffect(() => {
+    const savedTheme = localStorage.getItem(import.meta.env.VITE_COOKIE_KEY + '_theme')
+    if (savedTheme === 'dark') {
+      setIsDarkMode(true)
+      document.documentElement.setAttribute('data-theme', 'dark')
+    } else {
+      setIsDarkMode(false)
+      document.documentElement.setAttribute('data-theme', 'light')
+    }
     const setupMiddleware = async () => {
       await checkStore()
       await checkToken()

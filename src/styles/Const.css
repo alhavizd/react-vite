@@ -1,3 +1,13 @@
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --text-color: #000;
+}
+[data-theme='dark'] {
+  --primary-color: #0d6efd;
+  --secondary-color: #adb5bd;
+  --text-color: #f8f9fa;
+}
 #root {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -50,18 +50,16 @@ const Splash: React.FC = () => {
             </header>
             <main>
               <button onClick={testFunction}>{t('welcome')}</button>
-              <h1>{isDarkMode ? "Dark Mode" : "Light Mode"}</h1>
+              <h1>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</h1>
               <button
                 onClick={toggleTheme}
                 style={{
-                  marginTop: "20px",
-                  padding: "10px 20px",
-                  fontSize: "16px",
-                  cursor: "pointer",
-                  backgroundColor: colors.primary,
-                  color: colors.text,
-                  border: "none",
-                  borderRadius: "4px",
+                  marginTop: '20px',
+                  padding: '10px 20px',
+                  fontSize: '16px',
+                  cursor: 'pointer',
+                  border: 'none',
+                  borderRadius: '4px'
                 }}
               >
                 Toggle Theme
