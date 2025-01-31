@@ -1,5 +1,5 @@
-import {login} from '@/services/auth'
 import {addSeconds} from 'date-fns'
+import {login} from '@/services/auth'
 import {setToken} from '@/utils/token'
 
 export async function checkToken(): Promise<void> {

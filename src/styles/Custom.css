@@ -1,4 +1,7 @@
 .toolbar-antarinmakan {
   margin-top: -12px;
   margin-bottom: -12px;
+  height: 72px; /* Sama dengan tinggi header */
+  display: flex;
+  align-items: center;
 }
