@@ -1,3 +1,10 @@
 {
-  "welcome": "Selamat datang di aplikasi kami!"
+  "welcome": "Selamat datang!",
+  "where_do_you_want_to_order": "Mau pesan di mana?",
+  "select_service": "Pilih layanan",
+  "takeaway": "Bungkus",
+  "delivery": "Pesan Antar",
+  "food_reservation": "Reservasi Makanan",
+  "table_reservation": "Reservasi Meja",
+  "new": "Baru"
 }
