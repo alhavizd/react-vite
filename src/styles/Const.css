@@ -4,18 +4,37 @@
   --secondary-color: #6c757d;
   --text-color: #000;
   --grey-color: #767676;
+  --white-color: #fff;
 }
 [data-theme='dark'] {
   --primary-color: #0d6efd;
   --secondary-color: #adb5bd;
   --text-color: #f8f9fa;
   --grey-color: #767676;
+  --white-color: #fff;
 }
 .grey {
   background-color: var(--grey-color);
 }
 .grey-text {
-  color: var(--grey-color);
+  color: var(--grey-color) !important;
+  caret-color: var(--grey-color) !important;
+}
+.white-text {
+  color: var(--white-color) !important;
+  caret-color: var(--white-color) !important;
+}
+.primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+button,
+input,
+select,
+textarea {
+  background-color: transparent;
+  border-style: none;
+  color: inherit;
 }
 html {
   font-family: 'Nunito', serif;
@@ -34,6 +53,13 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  line-height: 1.5;
+}
+#root .text-none {
+  text-transform: none !important;
+}
+#root .overflow-y-auto {
+  overflow-y: auto !important;
 }
 .root-wrap {
   -webkit-box-flex: 1;
@@ -984,4 +1010,137 @@ html {
 }
 .font-18 {
   font-size: 18px !important;
+}
+.div-line {
+  height: 0.5px;
+  background-color: #cecece;
+}
+.div-line.with-padding-16 {
+  width: calc(100% - 32px);
+  margin: auto;
+}
+.prevent-select {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.btn {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 4px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-weight: 500;
+  letter-spacing: 0.0892857143em;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  outline: 0;
+  position: relative;
+  text-decoration: none;
+  text-indent: 0.0892857143em;
+  text-transform: uppercase;
+  -webkit-transition-duration: 0.28s;
+  transition-duration: 0.28s;
+  -webkit-transition-property:
+    opacity,
+    -webkit-box-shadow,
+    -webkit-transform;
+  transition-property:
+    opacity,
+    -webkit-box-shadow,
+    -webkit-transform;
+  transition-property: box-shadow, transform, opacity;
+  transition-property:
+    box-shadow,
+    transform,
+    opacity,
+    -webkit-box-shadow,
+    -webkit-transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: var(--text-color);
+}
+.btn::before {
+  border-radius: inherit;
+  bottom: 0;
+  color: inherit;
+  content: '';
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: currentColor;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.btn-content {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  -webkit-box-pack: inherit;
+  -ms-flex-pack: inherit;
+  justify-content: inherit;
+  line-height: normal;
+  position: relative;
+}
+.btn:not(.btn-text):not(.btn-outlined):hover:before {
+  opacity: 0.08;
+  z-index: 1;
+}
+.btn-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  min-width: 100% !important;
+  max-width: auto;
+}
+.btn-shadow {
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12) !important;
+}
+.btn-disabled:not(.btn-flat):not(.btn-text):not(.btn-outlined) {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+}
+.btn.btn-disabled,
+.btn.btn-disabled .btn-loading {
+  color: rgba(0, 0, 0, 0.26) !important;
+}
+[role='button'],
+[type='button'],
+[type='reset'],
+[type='submit'],
+button {
+  cursor: pointer;
+}
+.btn-icon {
+  height: 40px;
+  width: 40px;
+  max-width: 40px;
+  min-width: 40px;
+  background-color: transparent;
 }

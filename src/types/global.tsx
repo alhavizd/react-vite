@@ -8,6 +8,11 @@ export interface GlobalContextType {
   }
 }
 
-export interface StoreDetailContextType{
-  storeDetails: any
+export interface StoreDetailContextType {
+  storeDetail: any
+}
+
+export interface OutletContextType {
+  selectOutletId: (id: number) => void
+  outletDetail: any
 }

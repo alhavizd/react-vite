@@ -6,5 +6,10 @@
   "delivery": "Pesan Antar",
   "food_reservation": "Reservasi Makanan",
   "table_reservation": "Reservasi Meja",
-  "new": "Baru"
+  "new": "Baru",
+  "choose_outlet": "Pilih tempat",
+  "view_menu": "Lihat menu",
+  "allow": "Izinkan",
+  "distance_store": "Perlu akses GPS untuk menampilkan jarak toko",
+  "allow_gps_for_delivery": "Izinkan GPS untuk pesan antar"
 }

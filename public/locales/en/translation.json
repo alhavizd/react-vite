@@ -6,5 +6,10 @@
   "delivery": "Delivery",
   "food_reservation": "Food Reservation",
   "table_reservation": "Table Reservation",
-  "new": "New"
+  "new": "New",
+  "choose_outlet": "Choose a outlet",
+  "view_menu": "Menu",
+  "allow": "Allow",
+  "distance_store": "Need GPS access to display shop distance",
+  "allow_gps_for_delivery": "Allow GPS for delivery"
 }

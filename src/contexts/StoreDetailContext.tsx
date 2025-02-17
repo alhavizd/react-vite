@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState, useEffect} from 'react'
+import React, {createContext, useContext} from 'react'
 import {useQuery} from '@tanstack/react-query'
 import {getStore} from '@/services/outlet'
 import {StoreDetailContextType} from '@/types/global'
@@ -8,11 +8,9 @@ const StoreDetailContext = createContext<StoreDetailContextType | undefined>(und
 
 // Provider untuk membungkus aplikasi
 export const StoreDetailProvider = ({children}: {children: React.ReactNode}) => {
-  const [storeDetails, setStoreDetails] = useState<any>(null)
-
   // Query store detail, hanya berjalan setelah login berhasil (token ada)
   const {
-    data: storeDetail,
+    data: dataStoreDetail,
     isLoading: isStoreLoading,
     error: isStoreError
   } = useQuery({
@@ -20,16 +18,17 @@ export const StoreDetailProvider = ({children}: {children: React.ReactNode}) => 
     queryFn: getStore
   })
 
-  useEffect(() => {
-    if (storeDetail?.data) {
-      setStoreDetails(storeDetail.data.data)
-    }
-  }, [storeDetail])
+  let storeDetail = {}
+
+  if (dataStoreDetail) {
+    storeDetail = dataStoreDetail.data
+    localStorage.setItem(import.meta.env.VITE_COOKIE_KEY + '_outlet_id', String(dataStoreDetail.data.id))
+  }
 
   if (isStoreLoading) return <p>Loading...</p>
-  if (isStoreError) return <p>Error: Gagal mendapatkan data</p>
+  if (isStoreError) return <p>Error: Gagal mendapatkan data 3</p>
 
-  return <StoreDetailContext.Provider value={{storeDetails}}>{children}</StoreDetailContext.Provider>
+  return <StoreDetailContext.Provider value={{storeDetail}}>{children}</StoreDetailContext.Provider>
 }
 
 // Hook untuk menggunakan data toko

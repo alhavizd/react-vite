@@ -3,6 +3,7 @@ import {createRoot} from 'react-dom/client'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import {GlobalProvider} from '@/contexts/GlobalContext'
 import {StoreDetailProvider} from '@/contexts/StoreDetailContext'
+import {OutletProvider} from '@/contexts/OutletContext'
 import '@/styles/normalize.css'
 import App from './App'
 import '@/i18n'
@@ -14,7 +15,9 @@ createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <GlobalProvider>
         <StoreDetailProvider>
-          <App />
+          <OutletProvider>
+            <App />
+          </OutletProvider>
         </StoreDetailProvider>
       </GlobalProvider>
     </QueryClientProvider>
