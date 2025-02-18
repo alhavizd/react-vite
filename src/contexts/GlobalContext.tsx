@@ -1,13 +1,14 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { addSeconds } from 'date-fns'
-import { login } from '@/services/auth'
-import { setToken } from '@/utils/token'
-import { GlobalContextType } from '@/types/global'
+import React, {createContext, useContext, useState, useEffect} from 'react'
+import {useQuery} from '@tanstack/react-query'
+import {addSeconds} from 'date-fns'
+import {login} from '@/services/auth'
+import {setToken} from '@/utils/token'
+import {GlobalContextType} from '@/types/global'
+import {checkStore} from '@/middleware/checkStore' // Import checkStore
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined)
 
-export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
+export const GlobalProvider = ({children}: {children: React.ReactNode}) => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem(import.meta.env.VITE_COOKIE_KEY + '_theme')
     return savedTheme === 'dark'
@@ -24,11 +25,18 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
     document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light')
   }, [isDarkMode])
 
-  const colors = isDarkMode
-    ? { primary: '#0d6efd', secondary: '#adb5bd', text: '#f8f9fa' }
-    : { primary: '#007bff', secondary: '#6c757d', text: '#000' }
+  // Menjalankan checkStore saat pertama kali aplikasi dimuat
+  useEffect(() => {
+    checkStore() // Tambahkan ini
+  }, [])
 
-  const { data: token, isLoading, error } = useQuery({
+  const colors = isDarkMode ? {primary: '#0d6efd', secondary: '#adb5bd', text: '#f8f9fa'} : {primary: '#007bff', secondary: '#6c757d', text: '#000'}
+
+  const {
+    data: token,
+    isLoading,
+    error
+  } = useQuery({
     queryKey: ['token'],
     queryFn: login,
     enabled: !localStorage.getItem(import.meta.env.VITE_COOKIE_KEY + '_auth_data')
@@ -38,21 +46,14 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
     if (token?.access_token) {
       const expiry = addSeconds(new Date(), token.expires_in || 0)
       setToken(token.access_token)
-      localStorage.setItem(
-        import.meta.env.VITE_COOKIE_KEY + '_auth_data',
-        JSON.stringify({ ...token, expires_time: expiry })
-      )
+      localStorage.setItem(import.meta.env.VITE_COOKIE_KEY + '_auth_data', JSON.stringify({...token, expires_time: expiry}))
     }
   }, [token])
 
   if (isLoading) return <p>Loading...</p>
   if (error) return <p>Error: Gagal mendapatkan data</p>
 
-  return (
-    <GlobalContext.Provider value={{ toggleTheme, colors, isDarkMode }}>
-      {children}
-    </GlobalContext.Provider>
-  )
+  return <GlobalContext.Provider value={{toggleTheme, colors, isDarkMode}}>{children}</GlobalContext.Provider>
 }
 
 export const useGlobal = () => {
